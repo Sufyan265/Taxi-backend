@@ -1,9 +1,8 @@
-const Booking = require('../models/Booking');
 const { getDistance } = require('../services/distanceService');
 
 const calculateFare = async (req, res) => {
     const { origin, destination, passengers, luggage, pickupDate, pickupTime, returnPickupDate, returnPickupTime } = req.body;
-
+ 
     // Basic validation
     if (!origin || !destination || !passengers || !luggage || !pickupDate || !pickupTime) {
         return res.status(400).json({
@@ -36,10 +35,9 @@ const calculateFare = async (req, res) => {
         // Mini Van Fare
         const miniVanFare = calculateFareForCarType(80, 2.6, 70);
 
-        const newBooking = new Booking({
+        res.json({
             origin,
             destination,
-            distance: distanceKm,  // Add the distance field
             distanceKm,
             distanceMiles,
             duration,
@@ -49,16 +47,6 @@ const calculateFare = async (req, res) => {
             pickupTime,
             returnPickupDate,
             returnPickupTime,
-            standardFare,
-            firstClassFare,
-            peopleCarrierFare,
-            miniVanFare,
-        });
-
-        const savedBooking = await newBooking.save();
-
-        res.json({
-            booking: savedBooking,
             fares: {
                 standardFare,
                 firstClassFare,
