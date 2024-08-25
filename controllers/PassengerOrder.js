@@ -1,8 +1,8 @@
 const Passenger = require('../models/Passenger');
 
-// Function to generate a unique 6-digit reference number
+// Function to generate a unique reference number starting with "BAT" followed by 6 random digits
 const generateReferenceNumber = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString();
+    return 'BAT' + Math.floor(100000 + Math.random() * 900000).toString();
 };
 
 const storePassengerInfo = async (req, res) => {
@@ -67,7 +67,8 @@ const storePassengerInfo = async (req, res) => {
 
         res.json({
             message: "Passenger information saved successfully.",
-            passenger: savedPassenger
+            passenger: savedPassenger,
+            referenceNumber: referenceNumber // Include reference number in the response
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
