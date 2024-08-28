@@ -26,11 +26,12 @@ const storePassengerInfo = async (req, res) => {
         returnPickupTime,
         fare,
         paymentMethod,
-        vehicleType
+        vehicleType,
+        flightNo
     } = req.body;
 
     // Basic validation
-    if (!name || !email || !mobileNumber || !postCode || !address || !origin || !destination || !distanceKm || !distanceMiles || !duration || !passengers || !luggage || !pickupDate || !pickupTime || !fare || !paymentMethod || !vehicleType) {
+    if (!name || !email || !mobileNumber || !postCode || !address || !origin || !destination || !distanceKm || !distanceMiles || !duration || !passengers || !luggage || !pickupDate || !pickupTime || !fare || !paymentMethod || !vehicleType || !flightNo) {
         return res.status(400).json({
             message: "Please provide all required fields."
         });
@@ -60,6 +61,7 @@ const storePassengerInfo = async (req, res) => {
             fare,
             paymentMethod,
             vehicleType,
+            flightNo,
             referenceNumber
         });
 
@@ -67,7 +69,7 @@ const storePassengerInfo = async (req, res) => {
 
         res.json({
             message: "Passenger information saved successfully.",
-            passenger: savedPassenger,
+            bookingData: savedPassenger,
             referenceNumber: referenceNumber // Include reference number in the response
         });
     } catch (error) {

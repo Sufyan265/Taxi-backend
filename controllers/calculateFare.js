@@ -24,16 +24,16 @@ const calculateFare = async (req, res) => {
         };
 
         // Standard Car Fare
-        const standardFare = calculateFareForCarType(50, 1.8, 40);
+        const standardFare = calculateFareForCarType(30, 1.8, 40);
 
         // First Class Car Fare
-        const firstClassFare = calculateFareForCarType(60, 1.9, 50);
+        const firstClassFare = calculateFareForCarType(40, 1.9, 50);
 
         // People Carrier Car Fare
-        const peopleCarrierFare = calculateFareForCarType(50, 1.9, 55);
+        const peopleCarrierFare = calculateFareForCarType(35, 1.9, 55);
 
         // Mini Van Fare
-        const miniVanFare = calculateFareForCarType(80, 2.6, 70);
+        const miniVanFare = calculateFareForCarType(45, 2.6, 70);
 
         res.json({
             origin,

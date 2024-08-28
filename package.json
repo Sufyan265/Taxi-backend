@@ -1,9 +1,11 @@
 {
   "name": "taxi-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node --max_old_space_size=4096 server.js",
+    "postinstall": "echo 'Post-install script executed'"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +16,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "mongodb": "^6.8.0",
     "mongoose": "^8.5.3",
+    "path": "^0.12.7",
     "stripe": "^16.8.0"
   }
 }

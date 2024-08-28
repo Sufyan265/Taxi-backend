@@ -79,6 +79,10 @@ const passengerSchema = new mongoose.Schema({
     vehicleType: {
         type: String,
         required: true
+    },
+    flightNo: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
