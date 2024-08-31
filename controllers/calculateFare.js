@@ -1,16 +1,16 @@
 const { getDistance } = require('../services/distanceService');
 
 const calculateFare = async (req, res) => {
-    const { origin, destination, passengers, luggage, pickupDate, pickupTime, returnPickupDate, returnPickupTime } = req.body;
- 
+    const { origin, destination, passengers, luggage, pickupDate, pickupTime, returnPickupDate, returnPickupTime, tripType } = req.body;
+
     // Basic validation
-    if (!origin || !destination || !passengers || !luggage || !pickupDate || !pickupTime) {
+    if (!origin || !destination || !passengers || !luggage || !pickupDate || !pickupTime || !tripType) {
         return res.status(400).json({
-            message: "Please provide origin, destination, passengers, luggage, pickupDate, and pickupTime."
+            message: "Please provide origin, destination, passengers, luggage, pickupDate, pickupTime, and tripType."
         });
     }
 
-    try {
+    try { 
         const { distanceKm, distanceMiles, duration } = await getDistance(origin, destination);  // Get the distance from Google API
 
         // Fare calculation logic for different car types
@@ -47,6 +47,7 @@ const calculateFare = async (req, res) => {
             pickupTime,
             returnPickupDate,
             returnPickupTime,
+            tripType,
             fares: {
                 standardFare,
                 firstClassFare,

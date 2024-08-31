@@ -80,7 +80,15 @@ const passengerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    referenceNumber: {
+        type: String,
+        required: true
+    },
     flightNo: {
+        type: String,
+        required: true
+    },
+    tripType: {
         type: String,
         required: true
     }
