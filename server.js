@@ -32,7 +32,9 @@ app.use((req, res, next) => {
 
 // Configure CORS to allow requests from the specified origin
 // app.use(cors({
-//     origin: 'https://birminghamairporttaxicab.co.uk'
+//     origin: 'https://birminghamairporttaxicab.co.uk',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['Content-Type', 'Authorization']
 // }));
 app.use(cors());
 
@@ -57,5 +59,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port http://localhost:${PORT}`);
 });

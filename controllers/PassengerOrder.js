@@ -28,11 +28,12 @@ const storePassengerInfo = async (req, res) => {
         paymentMethod,
         vehicleType,
         flightNo,
-        tripType
+        tripType,
+        paymentIntentId
     } = req.body;
 
     // Basic validation
-    if (!name || !email || !mobileNumber || !postCode || !address || !origin || !destination || !distanceKm || !distanceMiles || !duration || !passengers || !luggage || !pickupDate || !pickupTime || !fare || !paymentMethod || !vehicleType || !flightNo || !tripType) {
+    if (!name || !email || !mobileNumber || !postCode || !address || !origin || !destination || !distanceKm || !distanceMiles || !duration || !passengers || !luggage || !pickupDate || !pickupTime || !fare || !paymentMethod || !vehicleType || !flightNo || !tripType || !paymentIntentId) {
         return res.status(400).json({
             message: "Please provide all required fields."
         });
@@ -64,7 +65,8 @@ const storePassengerInfo = async (req, res) => {
             vehicleType,
             flightNo,
             tripType,
-            referenceNumber
+            referenceNumber,
+            paymentIntentId
         });
 
         const savedPassenger = await newPassenger.save();

@@ -91,6 +91,15 @@ const passengerSchema = new mongoose.Schema({
     tripType: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        required: false,
+        default: 'Active'
+    },
+    paymentIntentId: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true

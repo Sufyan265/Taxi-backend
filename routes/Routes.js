@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/calculate-fare', calculateFare);
 router.post('/passenger', storePassengerInfo); 
 router.post('/suggestions', suggestions);
-router.get('/manageBooking', manageBooking);
-router.get('/cancelBooking', cancelBooking);
+router.post('/manageBooking', manageBooking);
+router.post('/cancelBooking', cancelBooking);
 
 module.exports = router;

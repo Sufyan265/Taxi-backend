@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 router.post('/create-checkout-session', async (req, res) => {

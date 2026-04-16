@@ -2,7 +2,7 @@ const Passenger = require('../models/Passenger');
 
 const manageBooking = async (req, res) => {
     let success = false;
-    const { email, referenceNumber } = req.query;
+    const { email, referenceNumber } = req.body;
 
     // Basic validation
     if (!email || !referenceNumber) {
@@ -13,20 +13,29 @@ const manageBooking = async (req, res) => {
     }
 
     try {
-        const booking = await Passenger.findOne({ email, referenceNumber });
+        const bookings = await Passenger.find({ email });
+
+        if (!bookings || bookings.length === 0) {
+            return res.status(404).json({
+                success,
+                message: "No bookings found with this email."
+            });
+        }
+
+        const booking = bookings.find(b => b.referenceNumber === referenceNumber);
 
         if (!booking) {
             return res.status(404).json({
                 success,
-                message: "Booking not found With this Email or Rafrance Number."
+                message: "No booking found with this reference number."
             });
         }
 
         success = true;
         res.json({
             success,
-            message: "Booking retrieved successfully.",
-            bookingData: booking
+            message: "Bookings retrieved successfully.",
+            bookingsData: bookings
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
